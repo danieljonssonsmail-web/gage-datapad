@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAGE – Star Wars D6 Datapad</title>
+  <style>
+    :root{
+      --bg:#05070b; --panel:#0f1724; --panel2:#172235; --line:#344862;
+      --gold:#f5c542; --text:#edf2f7; --muted:#a9b4c2; --blue:#75c7ff; --green:#86efac;
+      --red:#ff7a7a; --ink:#05070a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at top,#1a2942 0,#05070b 55%);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
+    header{border-bottom:2px solid var(--gold);background:rgba(5,7,11,.94);position:sticky;top:0;z-index:10;backdrop-filter:blur(6px)}
+    .wrap{max-width:1200px;margin:auto;padding:18px}
+    h1{margin:0;color:var(--gold);letter-spacing:4px;font-size:38px}
+    h2{color:var(--gold);margin:0 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+    h3{color:var(--blue);margin:16px 0 8px}
+    .nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .nav button,.btn{background:#1b2b43;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;font-weight:bold}
+    .nav button.active,.btn.gold{background:var(--gold);color:#111;border-color:var(--gold)}
+    .btn.red{background:#41212a;border-color:#7f1d1d}
+    .page{display:none}.page.active{display:block}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:800px){.grid2{grid-template-columns:1fr}h1{font-size:30px}}
+    .card{background:linear-gradient(180deg,var(--panel),#0a0f18);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+    .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted #34465f;padding:6px 0}
+    .skill{cursor:pointer;border-radius:8px;padding:7px 9px;margin:3px 0;background:#101a27;border:1px solid transparent;display:flex;justify-content:space-between}
+    .skill:hover{border-color:var(--gold);background:#1d2b3e}
+    .die{color:var(--gold);font-weight:bold}
+    .muted{color:var(--muted)} .quote{font-size:20px;color:var(--gold);border-left:4px solid var(--gold);padding-left:14px;margin:16px 0}
+    .tag{display:inline-block;background:#21304a;border:1px solid #405676;border-radius:999px;padding:5px 9px;margin:4px;color:#dce8f7}
+    input,textarea,select{width:100%;background:#070b10;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;margin:4px 0 10px}
+    textarea{min-height:150px}
+    .journalbox{min-height:440px}
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:99;align-items:center;justify-content:center;padding:18px}
+    .modalbox{max-width:680px;width:100%;background:#101722;border:1px solid var(--gold);border-radius:14px;padding:18px}
+    .diceout{background:#05070a;border:1px solid var(--line);padding:10px;border-radius:8px;margin-top:10px;min-height:42px}
+    .close{float:right;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+    .worldnote{border-left:3px solid var(--blue);padding-left:12px;margin:14px 0;color:#dbeafe}
+    .book{margin-bottom:14px}
+    .equip{padding:10px;border:1px solid #263850;border-radius:10px;background:#0d1520;margin:8px 0}
+    .equip b{color:var(--gold)}
+    .equip .why{color:#dbeafe}
+    .equip .use{color:#c7f9cc}
+    .customItem{display:flex;gap:8px;align-items:center;border-bottom:1px dotted #34465f;padding:8px 0}
+    .customItem span{flex:1}
+    .artgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .art{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#060a10}
+    .art svg{width:100%;height:240px;display:block}
+    .artcap{padding:10px;color:var(--muted);font-size:.9em}
+    .footer{color:var(--muted);text-align:center;padding:24px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>GAGE</h1>
+    <div class="muted">Barabel • Merc • Former Convoy Security • Security Chief for the Party</div>
+    <div class="nav">
+      <button class="active" onclick="showPage('journal',this)">Journal / Story</button>
+      <button onclick="showPage('sheet',this)">Character Sheet</button>
+      <button onclick="showPage('gear',this)">Gear</button>
+      <button onclick="showPage('log',this)">Free Journal</button>
+      <button onclick="showPage('gallery',this)">Images</button>
+      <button onclick="showPage('rules',this)">Quick Rules</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="journal" class="page active">
+    <div class="grid2">
+      <div class="art">
+        <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="space" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e314e"/><stop offset=".55" stop-color="#090d13"/><stop offset="1" stop-color="#241811"/></linearGradient>
+            <radialGradient id="sun"><stop stop-color="#ffd76a"/><stop offset=".7" stop-color="#d98b2b"/><stop offset="1" stop-color="transparent"/></radialGradient>
+          </defs>
+          <rect width="900" height="620" fill="url(#space)"/>
+          <circle cx="760" cy="105" r="120" fill="url(#sun)" opacity=".8"/>
+          <g opacity=".65">
+            <circle cx="110" cy="70" r="2" fill="#fff"/><circle cx="190" cy="150" r="2" fill="#fff"/><circle cx="350" cy="90" r="1.5" fill="#fff"/><circle cx="610" cy="210" r="2" fill="#fff"/>
+            <circle cx="690" cy="420" r="1.5" fill="#fff"/><circle cx="80" cy="500" r="2" fill="#fff"/><circle cx="450" cy="520" r="2" fill="#fff"/>
+          </g>
+          <path d="M170 390 C260 330 345 330 445 380 C565 442 675 378 790 315" stroke="#75c7ff" stroke-width="7" fill="none" opacity=".7"/>
+          <g transform="translate(255,250)">
+            <path d="M0 90 L160 20 L350 80 L410 150 L250 135 L125 170 Z" fill="#1a2637" stroke="#f5c542" stroke-width="4"/>
+            <path d="M160 20 L190 105 L350 80" stroke="#75c7ff" stroke-width="3" opacity=".45"/>
+            <circle cx="245" cy="105" r="12" fill="#75c7ff"/>
+            <path d="M40 100 L-45 135 L55 130 Z" fill="#0e1622" stroke="#344862" stroke-width="3"/>
+          </g>
+          <rect x="40" y="520" width="820" height="58" fill="rgba(0,0,0,.55)" stroke="#344862"/>
+          <text x="66" y="558" fill="#f5c542" font-family="Arial" font-size="30">GAGE // PARTY SECURITY DOSSIER</text>
+        </svg>
+        <div class="artcap">Opening image: the party ship as home, route, and risk. The ship name is intentionally left open.</div>
+      </div>
+      <div class="card">
+        <h2>Gage</h2>
+        <p class="quote">“Violence is easy. Living with it isn't.”</p>
+        <p>Gage is a former convoy security operator from the Outer Rim. Other people called his unit mercenaries. They called themselves <b>The Squad</b>.</p>
+        <p>They protected freighters through pirate territory, stood between civilians and slavers, and did the work that governments, corporations, and officers were unwilling to risk their own people for.</p>
+        <p>Then came a contract that paid too well. Reinforcements were promised if the convoy was attacked. They never arrived. Gage survived. Most of his squad did not.</p>
+        <p>He never tells war stories. He never boasts. When someone asks about his past, he says only:</p>
+        <p class="quote">“It was a long time ago.”</p>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:14px">
+      <div class="card">
+        <h2>How he works</h2>
+        <p>Gage is not the one who wants a fight. He is the one who knows when there is no other choice left.</p>
+        <p>He watches hands, exits, body language, and blind spots. He tries words first. If someone threatens the party, the conversation is over.</p>
+        <p class="quote">“Can we take them? Probably. The better question is: do we have to?”</p>
+      </div>
+      <div class="card">
+        <h2>Loyalty</h2>
+        <p>The Captain is the Captain. Gage gives advice once. After the decision is made, the Captain's decision becomes his mission.</p>
+        <p>He may disagree in private. Never in front of the party. Never in front of the enemy.</p>
+        <p class="quote">“No one gets left behind.”</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2>Gage's view of the galaxy</h2>
+      <div class="book"><b>Heroes & Rogues:</b> Everyone carries a story. Jobs lie. Actions lie less.</div>
+      <div class="book"><b>Galaxy Guide 6 – Tramp Freighters:</b> A ship is not transportation. A ship is home. If the ship dies, the family dies.</div>
+      <div class="book"><b>Platt's Smuggler's Guide:</b> There is always another way. If customs is standing in front of the door, use another door.</div>
+      <div class="book"><b>Platt's Starport Guide:</b> Starports are more dangerous than battlefields. On a battlefield you know who the enemy is.</div>
+      <div class="book"><b>Galaxy Guide 10 – Bounty Hunters:</b> The hunter is also hunted. Patience beats speed.</div>
+      <div class="book"><b>Galaxy Guide 11 – Criminal Organizations:</b> Organizations never forget. Choose your enemies carefully.</div>
+      <div class="book"><b>Imperial Sourcebook:</b> The Empire is dangerous because it is organized. Discipline kills more people than courage.</div>
+      <div class="book"><b>Rebel Alliance Sourcebook:</b> Courage is not winning. Courage is continuing.</div>
+      <div class="book"><b>Gundark's Fantastic Technology:</b> The right tool is better than the bigger weapon.</div>
+      <div class="book"><b>Cynabar's Droids:</b> Treat droids well. They remember.</div>
+    </div>
+  </section>
+
+  <section id="sheet" class="page">
+    <div class="grid">
+      <div class="card">
+        <h2>Basic Info</h2>
+        <div class="row"><b>Name</b><span>Gage</span></div>
+        <div class="row"><b>Species</b><span>Barabel</span></div>
+        <div class="row"><b>Template</b><span>Merc</span></div>
+        <div class="row"><b>Type</b><span>Former Convoy Security</span></div>
+        <div class="row"><b>Party Role</b><span>Security Chief / Gunner</span></div>
+        <div class="row"><b>Move</b><span>10</span></div>
+      </div>
+      <div class="card">
+        <h2>Points</h2>
+        <label>Character Points</label><input id="cp" value="0">
+        <label>Force Points</label><input id="fp" value="1">
+        <label>Dark Side Points</label><input id="dsp" value="0">
+        <label>Credits</label><input id="credits" value="1000">
+        <button class="btn gold" onclick="save()">Save</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2>Click a skill to roll</h2>
+      <div class="grid">
+        <div><h3>Dexterity 4D</h3>
+          <div class="skill" onclick="openSkill('Blaster',6,'Firing blaster pistols, heavy blasters, carbines, and rifles.')"><span>Blaster</span><span class="die">6D</span></div>
+          <div class="skill" onclick="openSkill('Brawling Parry',4,'Blocking punches, kicks, and unarmed attacks.')"><span>Brawling Parry</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Dodge',6,'Avoiding blaster fire, grenades, and ranged attacks.')"><span>Dodge</span><span class="die">6D</span></div>
+          <div class="skill" onclick="openSkill('Grenade',4,'Throwing smoke, stun, flash, or fragmentation grenades.')"><span>Grenade</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Melee Combat',5,'Attacking with a vibroblade, knife, staff, or other melee weapon.')"><span>Melee Combat</span><span class="die">5D</span></div>
+          <div class="skill" onclick="openSkill('Melee Parry',5,'Blocking melee weapons.')"><span>Melee Parry</span><span class="die">5D</span></div>
+          <div class="skill" onclick="openSkill('Vehicle Blasters',4,'Firing weapons mounted on ground vehicles.')"><span>Vehicle Blasters</span><span class="die">4D</span></div>
+        </div>
+        <div><h3>Perception 3D</h3>
+          <div class="skill" onclick="openSkill('Command',4,'Giving clear orders under pressure. Making people listen.')"><span>Command</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Con',3,'Lying, bluffing, playing innocent.')"><span>Con</span><span class="die">3D</span></div>
+          <div class="skill" onclick="openSkill('Gambling',3,'Sabacc, risk, odds, and reading the table.')"><span>Gambling</span><span class="die">3D</span></div>
+          <div class="skill" onclick="openSkill('Hide',3,'Hiding objects, weapons, or contraband.')"><span>Hide</span><span class="die">3D</span></div>
+          <div class="skill" onclick="openSkill('Search',4,'Spotting ambushes, weapons, traps, hidden doors, and threats.')"><span>Search</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Sneak',3,'Moving quietly and avoiding detection.')"><span>Sneak</span><span class="die">3D</span></div>
+        </div>
+        <div><h3>Knowledge 2D</h3>
+          <div class="skill" onclick="openSkill('Alien Species',2,'Knowledge of species, behavior, and special abilities.')"><span>Alien Species</span><span class="die">2D</span></div>
+          <div class="skill" onclick="openSkill('Languages',2,'Understanding and speaking languages.')"><span>Languages</span><span class="die">2D</span></div>
+          <div class="skill" onclick="openSkill('Planetary Systems',2,'Planets, trade routes, and local hazards.')"><span>Planetary Systems</span><span class="die">2D</span></div>
+          <div class="skill" onclick="openSkill('Streetwise',2,'Underworld contacts, smuggling routes, and local risks.')"><span>Streetwise</span><span class="die">2D</span></div>
+          <div class="skill" onclick="openSkill('Survival',2,'Surviving deserts, snow, jungles, and wilderness.')"><span>Survival</span><span class="die">2D</span></div>
+        </div>
+        <div><h3>Strength 4D</h3>
+          <div class="skill" onclick="openSkill('Brawling',4,'Unarmed fighting: punches, kicks, holds, and grapples.')"><span>Brawling</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Climbing/Jumping',4,'Climbing, jumping, and crossing obstacles.')"><span>Climbing/Jumping</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Lifting',4,'Lifting, carrying, forcing things open.')"><span>Lifting</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Stamina',4,'Endurance, cold, heat, fatigue, poison.')"><span>Stamina</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Swimming',4,'Swimming and handling water environments.')"><span>Swimming</span><span class="die">4D</span></div>
+        </div>
+        <div><h3>Mechanical 2D+2</h3>
+          <div class="skill" onclick="openSkill('Beast Riding',2,'Riding animals. Base value 2D+2; roller uses 2D here for simplicity.')"><span>Beast Riding</span><span class="die">2D+2</span></div>
+          <div class="skill" onclick="openSkill('Ground Vehicle Operation',2,'Driving ground vehicles. Base value 2D+2; roller uses 2D here for simplicity.')"><span>Ground Vehicle Operation</span><span class="die">2D+2</span></div>
+          <div class="skill" onclick="openSkill('Repulsorlift Operation',2,'Driving landspeeders, airspeeders, and speeder bikes. Base value 2D+2; roller uses 2D here for simplicity.')"><span>Repulsorlift Operation</span><span class="die">2D+2</span></div>
+          <div class="skill" onclick="openSkill('Starship Gunnery',4,'Firing ship cannons, turrets, and weapon systems.')"><span>Starship Gunnery</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Walker Operation',2,'Operating walkers. Base value 2D+2; roller uses 2D here for simplicity.')"><span>Walker Operation</span><span class="die">2D+2</span></div>
+        </div>
+        <div><h3>Technical 3D</h3>
+          <div class="skill" onclick="openSkill('Computer Programming/Repair',3,'Hacking, programming, and repairing computers.')"><span>Computer Programming/Repair</span><span class="die">3D</span></div>
+          <div class="skill" onclick="openSkill('Demolitions',3,'Placing, understanding, or disarming explosives.')"><span>Demolitions</span><span class="die">3D</span></div>
+          <div class="skill" onclick="openSkill('First Aid',4,'Stabilizing injured allies until the medic takes over.')"><span>First Aid</span><span class="die">4D</span></div>
+          <div class="skill" onclick="openSkill('Security',4,'Locks, alarms, cameras, doors, weapon lockers, and security systems.')"><span>Security</span><span class="die">4D</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gear" class="page">
+    <div class="grid2">
+      <div class="card">
+        <h2>Gear with explanations</h2>
+        <div id="fixedGear"></div>
+      </div>
+      <div class="card">
+        <h2>Add custom gear</h2>
+        <p class="muted">This is saved locally in your browser on this device. You do not need me for small gear edits.</p>
+        <label>Name</label><input id="newItemName" placeholder="Example: Door wedges">
+        <label>Description</label><textarea id="newItemDesc" placeholder="What is it for? Why does Gage carry it?"></textarea>
+        <button class="btn gold" onclick="addItem()">Add item</button>
+        <h3>Custom items</h3>
+        <div id="customGear"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="log" class="page">
+    <div class="card">
+      <h2>Free Journal</h2>
+      <p class="muted">Write session notes, contacts, debts, promises, suspicions, or things Gage never says out loud.</p>
+      <textarea id="freeJournal" class="journalbox" placeholder="Session 1..."></textarea>
+      <button class="btn gold" onclick="save()">Save journal</button>
+    </div>
+  </section>
+
+  <section id="gallery" class="page">
+    <div class="artgrid">
+      <div class="art">
+        <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="620" fill="#07090d"/>
+          <path d="M0 470 C160 350 290 540 455 390 S690 340 900 260 V620 H0Z" fill="#3a2a19"/>
+          <circle cx="705" cy="105" r="70" fill="#f5c542" opacity=".8"/>
+          <path d="M115 345 L260 290 L480 315 L710 240" stroke="#75c7ff" stroke-width="8" fill="none"/>
+          <circle cx="260" cy="290" r="12" fill="#75c7ff"/><circle cx="480" cy="315" r="12" fill="#75c7ff"/>
+          <text x="42" y="66" fill="#f5c542" font-size="32" font-family="Arial">OUTER RIM TRADE ROUTE</text>
+        </svg>
+        <div class="artcap">Outer Rim route: where Gage learned that no job is simple.</div>
+      </div>
+      <div class="art">
+        <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="620" fill="#111822"/>
+          <rect x="115" y="92" width="670" height="405" rx="22" fill="#1b2b43" stroke="#31435d" stroke-width="6"/>
+          <path d="M170 155 H725 M170 230 H725 M170 305 H725 M170 380 H725" stroke="#75c7ff" opacity=".35"/>
+          <rect x="210" y="430" width="120" height="28" fill="#f5c542"/>
+          <rect x="365" y="430" width="120" height="28" fill="#f5c542"/>
+          <rect x="520" y="430" width="120" height="28" fill="#f5c542"/>
+          <text x="170" y="137" fill="#f5c542" font-size="30" font-family="Arial">CARGO BAY // PARTY SHIP</text>
+        </svg>
+        <div class="artcap">Cargo bay: Gage's workplace when the ramp goes down.</div>
+      </div>
+      <div class="art">
+        <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="620" fill="#0b0f16"/>
+          <polygon points="120,490 450,85 780,490" fill="#1b2b43" stroke="#31435d" stroke-width="6"/>
+          <path d="M450 85 V490 M285 290 H615" stroke="#75c7ff" opacity=".4" stroke-width="5"/>
+          <circle cx="450" cy="335" r="48" fill="#f5c542"/>
+          <text x="130" y="555" fill="#f5c542" font-size="30" font-family="Arial">STARPORT APPROACH VECTOR</text>
+        </svg>
+        <div class="artcap">Starports: more dangerous than battlefields because everyone smiles first.</div>
+      </div>
+      <div class="art">
+        <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="620" fill="#12100c"/>
+          <rect x="80" y="120" width="740" height="370" rx="18" fill="#181f2b" stroke="#f5c542" stroke-width="4"/>
+          <circle cx="235" cy="305" r="76" fill="#3d4f3a"/>
+          <rect x="365" y="190" width="300" height="38" fill="#31435d"/>
+          <rect x="365" y="270" width="380" height="38" fill="#31435d"/>
+          <rect x="365" y="350" width="245" height="38" fill="#31435d"/>
+          <text x="110" y="82" fill="#f5c542" font-size="32" font-family="Arial">ISB DOSSIER // SUBJECT: GAGE</text>
+        </svg>
+        <div class="artcap">Dossier style: someone has a file on him. He already knows.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rules" class="page">
+    <div class="card">
+      <h2>Quick Rules for Gage</h2>
+      <p><b>To hit:</b> Click Blaster 6D. Roll against the difficulty or the enemy's Dodge.</p>
+      <p><b>Damage:</b> If you hit, roll weapon damage, such as DL-6H = 5D. The target rolls Strength + Armor.</p>
+      <p><b>Barabel Armor:</b> Gage gets +2D against physical damage and +1D against energy/blasters.</p>
+      <p><b>Dodge:</b> Used to avoid being hit. Multiple actions in the same round usually give penalties.</p>
+      <p><b>Move 10:</b> Normal movement is roughly 10 meters per round. All-out is roughly 20 meters, but you do nothing else.</p>
+      <p class="worldnote">Gage's standard question when entering a room: Where are the exits? Who is armed? Who is nervous? Where is the Captain?</p>
+    </div>
+  </section>
+</main>
+
+<div id="modal" class="modal" onclick="if(event.target.id==='modal') closeModal()">
+  <div class="modalbox">
+    <button class="close" onclick="closeModal()">X</button>
+    <h2 id="skillName">Skill</h2>
+    <p id="skillDesc"></p>
+    <button class="btn gold" id="rollBtn">Roll</button>
+    <div id="diceout" class="diceout"></div>
+  </div>
+</div>
+
+<div class="footer">GAGE DATAPAD v3 • local offline HTML sheet</div>
+
+<script>
+const fixedGear = [
+  ["DL-6H Heavy Blaster Pistol","Gage's service weapon. Long range for a heavy blaster pistol. He draws it late, but maintains it constantly.","When words no longer work."],
+  ["SoroSuub QuickSnap 36T Blaster Carbine","A compact carbine for corridors, boarding actions, and shipboard fighting. Less awkward than a full rifle.","When the ramp goes down or someone boards the ship."],
+  ["Military Vibroblade","Carried as both a tool and a last resort. It suits Gage because it is practical, not flashy.","When someone gets too close or technology fails."],
+  ["Comlink","Basic communication with the party.","Gage always wants to know where the Captain and the medic are."],
+  ["Motion Tracker","Detects movement in corridors, cargo holds, ruins, or derelicts.","Gage's 'something is wrong' tool."],
+  ["Macrobinoculars","Long-distance observation, watching meeting sites, and checking landing zones.","Gage prefers prepared over brave."],
+  ["Smoke Grenades","Creates cover. Good for retreat, protecting the Captain, or breaking a firefight.","Non-lethal. Very Gage."],
+  ["Medpac","First aid until the real medic takes over.","Everyone comes home."],
+  ["Binder Cuffs","For ending problems without killing anyone.","Gage prefers prisoners to bodies."],
+  ["Breath Mask","Toxic atmosphere, smoke, gas, damaged ships.","A veteran does not forget basic survival gear."],
+  ["Power Packs","Extra ammunition for blasters.","No serious security chief runs dry."],
+  ["Protective Combat Helmet","Practical protection. Not worn to look dangerous.","Gage chooses function over style."],
+  ["Backpack","Carries what cannot be lost.","Gage's go-bag."],
+  ["Personal token from The Squad","A small reminder from those who did not come home.","No mechanical effect. Strong roleplay effect."]
+];
+
+function renderFixedGear(){
+  const box=document.getElementById('fixedGear');
+  box.innerHTML=fixedGear.map(x=>`<div class="equip"><b>${x[0]}</b><br><span class="why">${x[1]}</span><br><span class="use"><b>Use:</b> ${x[2]}</span></div>`).join('');
+}
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function openSkill(name,dice,desc){
+  document.getElementById('skillName').textContent=name+' '+dice+'D';
+  document.getElementById('skillDesc').textContent=desc;
+  document.getElementById('diceout').innerHTML='';
+  document.getElementById('rollBtn').onclick=function(){ roll(name,dice); };
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function roll(name,dice){
+  let rolls=[], total=0;
+  for(let i=0;i<dice;i++){let r=Math.floor(Math.random()*6)+1;rolls.push(r);total+=r;}
+  document.getElementById('diceout').innerHTML='<b>'+name+'</b><br>Rolls: '+rolls.join(', ')+'<br><b>Total: '+total+'</b>';
+}
+function getCustomGear(){return JSON.parse(localStorage.getItem('gageCustomGearV3')||'[]')}
+function setCustomGear(items){localStorage.setItem('gageCustomGearV3',JSON.stringify(items))}
+function renderCustomGear(){
+  const items=getCustomGear();
+  const box=document.getElementById('customGear');
+  if(items.length===0){box.innerHTML='<p class="muted">No custom gear yet.</p>';return}
+  box.innerHTML=items.map((it,i)=>`<div class="customItem"><span><b>${it.name}</b><br><span class="muted">${it.desc}</span></span><button class="btn red" onclick="deleteItem(${i})">Remove</button></div>`).join('');
+}
+function addItem(){
+  const name=document.getElementById('newItemName').value.trim();
+  const desc=document.getElementById('newItemDesc').value.trim();
+  if(!name){alert('Write a name first.');return}
+  const items=getCustomGear(); items.push({name,desc});
+  setCustomGear(items);
+  document.getElementById('newItemName').value=''; document.getElementById('newItemDesc').value='';
+  renderCustomGear();
+}
+function deleteItem(i){
+  const items=getCustomGear(); items.splice(i,1); setCustomGear(items); renderCustomGear();
+}
+function save(){
+  const data={
+    cp:document.getElementById('cp')?.value,
+    fp:document.getElementById('fp')?.value,
+    dsp:document.getElementById('dsp')?.value,
+    credits:document.getElementById('credits')?.value,
+    freeJournal:document.getElementById('freeJournal')?.value
+  };
+  localStorage.setItem('gageSheetV4',JSON.stringify(data));
+  alert('Saved in this browser.');
+}
+function load(){
+  const data=JSON.parse(localStorage.getItem('gageSheetV4')||'{}');
+  if(data.cp!==undefined && document.getElementById('cp')) cp.value=data.cp;
+  if(data.fp!==undefined && document.getElementById('fp')) fp.value=data.fp;
+  if(data.dsp!==undefined && document.getElementById('dsp')) dsp.value=data.dsp;
+  if(data.credits!==undefined && document.getElementById('credits')) credits.value=data.credits;
+  if(data.freeJournal!==undefined && document.getElementById('freeJournal')) freeJournal.value=data.freeJournal;
+}
+renderFixedGear(); renderCustomGear(); load();
+</script>
+</body>
+</html>
