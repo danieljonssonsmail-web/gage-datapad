@@ -1,11 +1,15 @@
-# Gage Datapad
+# Gage Datapad v0.3
 
-Star Wars D6 character datapad for Gage.
+Star Wars D6 datapad for Gage.
 
-## Update workflow
+## Install
+Copy these files into your local `gage-datapad` folder, commit in GitHub Desktop, then push origin.
 
-1. Replace files in this folder.
-2. Open GitHub Desktop.
-3. Commit to main.
-4. Push origin.
-5. Wait for GitHub Pages.
+## Version 0.3
+- Full Merc template skills included
+- Datapad UI improved
+- Combat rolls
+- Skill modals with examples
+- Gear cards
+- Principles, Party, Ship pages
+- Journal autosave

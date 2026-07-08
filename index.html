@@ -8,28 +8,75 @@
 </head>
 <body>
   <div id="boot" class="boot">
-    <div class="boot-box">
-      <div class="scanline"></div>
-      <p class="boot-line">INITIALIZING SECURITY DATAPAD...</p>
-      <p class="boot-line delay-1">ACCESSING CREW RECORDS...</p>
-      <p class="boot-line delay-2">AUTHENTICATING...</p>
-      <p class="boot-line delay-3 granted">ACCESS GRANTED</p>
+    <div class="boot-card">
+      <div class="boot-scan"></div>
+      <div class="boot-title">SECURITY DATAPAD</div>
+      <div class="boot-lines">
+        <p>INITIALIZING FIELD INTERFACE...</p>
+        <p>SYNCING LOCAL MEMORY...</p>
+        <p>LOADING MERC TEMPLATE...</p>
+        <p>AUTHENTICATING BARABEL BIOMETRICS...</p>
+        <p class="gold">ACCESS GRANTED // GAGE</p>
+      </div>
     </div>
   </div>
-  <main class="shell">
-    <aside class="sidebar">
-      <div class="brand"><div class="brand-kicker">SECURITY DATAPAD</div><h1>GAGE</h1><div class="status-dot"><span></span> ONLINE</div></div>
+
+  <main class="datapad">
+    <aside class="side">
+      <section class="identity">
+        <div class="kicker">CREW SECURITY FILE</div>
+        <h1>GAGE</h1>
+        <div class="live"><span></span>ONLINE</div>
+        <div class="sub">Merc // Former Convoy Security</div>
+      </section>
+
       <nav id="nav" class="nav">
-        <button data-view="overview" class="active">Overview</button><button data-view="combat">Combat</button><button data-view="skills">Skills</button><button data-view="gear">Equipment</button><button data-view="bio">Biography</button><button data-view="quotes">Quotes</button><button data-view="rules">Rules</button><button data-view="journal">Journal</button>
+        <button class="active" data-view="overview">Overview</button>
+        <button data-view="combat">Combat</button>
+        <button data-view="skills">All Skills</button>
+        <button data-view="gear">Equipment</button>
+        <button data-view="bio">Biography</button>
+        <button data-view="principles">Principles</button>
+        <button data-view="rules">Field Rules</button>
+        <button data-view="party">Party</button>
+        <button data-view="ship">Ship</button>
+        <button data-view="journal">Journal</button>
       </nav>
-      <div class="sidebar-footer"><div>PARTY ROLE</div><strong>Security Chief / Gunner</strong></div>
+
+      <section class="sidebox">
+        <div class="small-label">Current Role</div>
+        <strong>Security Chief / Gunner</strong>
+        <div class="meter"><i style="width:82%"></i></div>
+        <span class="tiny">Operational readiness: high</span>
+      </section>
     </aside>
-    <section class="content">
-      <header class="topbar"><div><div class="eyebrow">Outer Rim Crew File</div><h2 id="view-title">Overview</h2></div><button id="sound-toggle" class="mini-btn">Audio: Off</button></header>
+
+    <section class="main">
+      <header class="topbar">
+        <div>
+          <div class="kicker">Outer Rim Local Node</div>
+          <h2 id="viewTitle">Overview</h2>
+        </div>
+        <div class="top-actions">
+          <button id="audioBtn" class="chip">Audio Off</button>
+          <button id="panicBtn" class="chip warn">Red Alert</button>
+        </div>
+      </header>
+
       <section id="view" class="view"></section>
     </section>
   </main>
-  <div id="modal" class="modal hidden"><div class="modal-card"><button id="modal-close" class="modal-close">×</button><h3 id="modal-title"></h3><div id="modal-body"></div></div></div>
-  <script src="js/data.js"></script><script src="js/dice.js"></script><script src="js/app.js"></script>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button id="closeModal" class="close">×</button>
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/dice.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
