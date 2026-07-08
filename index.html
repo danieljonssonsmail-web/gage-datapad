@@ -1,118 +1,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GAGE – Star Wars D6 Character Sheet</title>
-<style>
-:root{--panel:#0f1724;--line:#344862;--gold:#f5c542;--text:#edf2f7;--muted:#a9b4c2;--blue:#75c7ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1a2942 0,#05070b 55%);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
-header{border-bottom:2px solid var(--gold);background:rgba(5,7,11,.95);position:sticky;top:0;z-index:20}.wrap{max-width:1220px;margin:auto;padding:18px}
-h1{margin:0;color:var(--gold);letter-spacing:4px;font-size:38px}h2{color:var(--gold);margin:0 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}h3{color:var(--blue);margin:16px 0 8px}
-.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.nav button,.btn{background:#1b2b43;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;font-weight:bold}.nav button.active,.btn.gold{background:var(--gold);color:#111;border-color:var(--gold)}.btn.red{background:#41212a;border-color:#7f1d1d}.btn.small{padding:6px 8px;font-size:.9em}
-.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:820px){.grid2{grid-template-columns:1fr}h1{font-size:30px}}
-.card{background:linear-gradient(180deg,var(--panel),#0a0f18);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 8px 22px rgba(0,0,0,.25)}.row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted #34465f;padding:6px 0}
-.skill{cursor:pointer;border-radius:8px;padding:7px 9px;margin:3px 0;background:#101a27;border:1px solid transparent;display:flex;justify-content:space-between}.skill:hover{border-color:var(--gold);background:#1d2b3e}.die{color:var(--gold);font-weight:bold}.muted{color:var(--muted)}.quote{font-size:20px;color:var(--gold);border-left:4px solid var(--gold);padding-left:14px;margin:16px 0}
-input,textarea{width:100%;background:#070b10;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;margin:4px 0 10px}textarea{min-height:150px}.journalbox{min-height:450px}
-.art{width:100%;border-radius:14px;border:1px solid var(--line);display:block;background:#080d14;height:360px}.art.small{height:220px}.caption{font-size:.9em;color:var(--muted);margin-top:6px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:99;align-items:center;justify-content:center;padding:18px}.modalbox{max-width:720px;width:100%;background:#101722;border:1px solid var(--gold);border-radius:14px;padding:18px}.close{float:right;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}.diceout{background:#05070a;border:1px solid var(--line);padding:10px;border-radius:8px;margin-top:10px;min-height:42px}
-.equip{padding:10px;border:1px solid #263850;border-radius:10px;background:#0d1520;margin:8px 0}.equip b{color:var(--gold)}.why{color:#dbeafe}.use{color:#c7f9cc}.customItem{display:flex;gap:8px;align-items:center;border-bottom:1px dotted #34465f;padding:8px 0}.customItem span{flex:1}
-table{width:100%;border-collapse:collapse;margin:8px 0}th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}th{background:#172235;color:var(--gold)}.bio{white-space:pre-line;font-size:1.02em}.ruleblock{border-left:3px solid var(--blue);padding-left:12px;margin:14px 0}.combat-actions{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.footer{color:var(--muted);text-align:center;padding:24px}
-</style></head>
-<body><header><div class="wrap"><h1>GAGE</h1><div class="muted">Barabel • Merc • Former Convoy Security • Security Chief for the Party</div><div class="nav"><button class="active" data-page="character">Character</button><button data-page="sheet">Skills</button><button data-page="combat">Combat</button><button data-page="gear">Gear</button><button data-page="bio">Biography</button><button data-page="quotes">Quotes</button><button data-page="rules">Rules</button><button data-page="log">Journal</button></div></div></header>
-<main class="wrap">
-<section id="character" class="page active"><div class="grid2"><div><svg class="art" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
-<defs><linearGradient id="c1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#27324a"/><stop offset="1" stop-color="#1b0f0a"/></linearGradient></defs>
-<rect width="900" height="520" fill="url(#c1)"/><rect y="310" width="900" height="210" fill="#120c09"/>
-<ellipse cx="455" cy="332" rx="350" ry="54" fill="#d8a84a" opacity=".22"/><rect x="90" y="255" width="720" height="55" rx="25" fill="#302316" stroke="#f5c542" opacity=".75"/>
-<g opacity=".55" stroke="#75c7ff"><path d="M150 80 C190 120 150 180 200 225"/><path d="M680 70 C640 140 710 190 650 245"/><path d="M430 45 C380 130 480 175 430 260"/></g>
-<circle cx="180" cy="250" r="38" fill="#3d5a45"/><rect x="150" y="286" width="60" height="85" rx="18" fill="#172235"/>
-<circle cx="650" cy="245" r="34" fill="#4a3940"/><rect x="624" y="278" width="54" height="85" rx="18" fill="#172235"/>
-<circle cx="450" cy="245" r="42" fill="#5b4b3a"/><rect x="418" y="286" width="70" height="110" rx="18" fill="#141a23"/>
-<text x="52" y="62" fill="#f5c542" font-family="Arial" font-size="28">CANTINA // WATCH THE HANDS</text></svg><div class="caption">Inspired by your references: cantina, smoke, backroom deals, and the moment before trouble starts.</div></div><div class="card"><h2>Character</h2><div class="row"><b>Name</b><span>Gage</span></div><div class="row"><b>Type</b><span>Merc (Former Convoy Security)</span></div><div class="row"><b>Gender / Species</b><span>Male / Barabel</span></div><div class="row"><b>Age</b><span>43</span></div><div class="row"><b>Height</b><span>2.08 m</span></div><div class="row"><b>Weight</b><span>142 kg</span></div><div class="row"><b>Move</b><span>10</span></div><p class="quote">“Violence is easy. Living with it isn't.”</p></div></div>
-<div class="grid" style="margin-top:14px"><div class="card"><h2>Physical Description</h2><p>A massive Barabel covered in old scars. His scales are dark olive with lighter bands running down his arms and tail. One horn is chipped and several scales across his left shoulder are permanently blackened from an old blaster burn.</p><p>His equipment is immaculate. His weapons are always clean. His armor is functional rather than intimidating. He moves slowly. Deliberately. Like someone who has survived by never wasting motion.</p></div><div class="card"><h2>Attributes</h2><div class="row"><b>Dexterity</b><span class="die">4D</span></div><div class="row"><b>Perception</b><span class="die">3D</span></div><div class="row"><b>Knowledge</b><span class="die">2D</span></div><div class="row"><b>Strength</b><span class="die">4D</span></div><div class="row"><b>Mechanical</b><span class="die">2D+2</span></div><div class="row"><b>Technical</b><span class="die">3D</span></div></div><div class="card"><h2>Points</h2><label>Character Points</label><input id="cp" value="0"><label>Force Points</label><input id="fp" value="1"><label>Dark Side Points</label><input id="dsp" value="0"><label>Credits</label><input id="credits" value="1000"><button class="btn gold" id="saveTop">Save</button></div></div></section>
-<section id="sheet" class="page"><div class="card"><h2>Clickable Skills</h2><p class="muted">Click a skill to see what it does and roll the dice.</p><div class="grid" id="skillsGrid"></div></div></section>
-<section id="combat" class="page"><div class="grid2"><div class="card"><h2>Combat Sheet</h2><table><tr><th>Weapon</th><th>Damage</th><th>Skill</th><th>Range</th><th>Ammo</th><th>Roll</th></tr><tr><td>BlasTech DL-6H Heavy Blaster Pistol</td><td>5D</td><td>Blaster 6D</td><td>3-10 / 30 / 120</td><td>25</td><td><button class="btn small gold combat-roll" data-name="DL-6H Attack" data-dice="6">Attack</button><button class="btn small combat-roll" data-name="DL-6H Damage" data-dice="5">Damage</button></td></tr><tr><td>SoroSuub QuickSnap 36T Blaster Carbine</td><td>5D</td><td>Blaster 6D</td><td>3-25 / 50 / 250</td><td>100</td><td><button class="btn small gold combat-roll" data-name="QuickSnap Attack" data-dice="6">Attack</button><button class="btn small combat-roll" data-name="QuickSnap Damage" data-dice="5">Damage</button></td></tr><tr><td>Military Vibroblade</td><td>STR + weapon bonus</td><td>Melee Combat 5D</td><td>Melee</td><td>—</td><td><button class="btn small gold combat-roll" data-name="Vibroblade Attack" data-dice="5">Attack</button><button class="btn small combat-roll" data-name="Vibroblade Damage" data-dice="6">Damage*</button></td></tr></table><p class="muted">*Vibroblade damage is set to 6D as a practical placeholder. Confirm exact weapon bonus with the GM.</p><div class="combat-actions"><button class="btn gold combat-roll" data-name="Dodge" data-dice="6">Roll Dodge 6D</button><button class="btn combat-roll" data-name="Physical Resistance" data-dice="6">Resist Physical 6D</button><button class="btn combat-roll" data-name="Energy Resistance" data-dice="5">Resist Energy 5D</button><button class="btn combat-roll" data-name="First Aid" data-dice="4">First Aid 4D</button></div><div id="combatOut" class="diceout"></div><h3>Natural Armor</h3><div class="row"><b>Physical Resistance</b><span>STR 4D + Armor 2D = <b class="die">6D</b></span></div><div class="row"><b>Energy Resistance</b><span>STR 4D + Armor 1D = <b class="die">5D</b></span></div><h3>Movement</h3><div class="row"><b>Cautious</b><span>5 m</span></div><div class="row"><b>Normal</b><span>10 m</span></div><div class="row"><b>All-Out</b><span>20 m, no other action</span></div></div><div><svg class="art small" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="360" fill="#07101d"/><circle cx="725" cy="92" r="75" fill="#f5c542" opacity=".72"/>
-<g opacity=".6" fill="#fff"><circle cx="85" cy="55" r="2"/><circle cx="180" cy="120" r="1.5"/><circle cx="390" cy="70" r="2"/><circle cx="610" cy="250" r="1.5"/></g>
-<g transform="translate(200,125)"><path d="M0 95 L180 20 L410 82 L510 150 L310 142 L150 180 Z" fill="#1a2637" stroke="#f5c542" stroke-width="4"/><path d="M180 20 L220 120 L410 82" stroke="#75c7ff" stroke-width="3" opacity=".5"/><circle cx="305" cy="118" r="14" fill="#75c7ff"/><path d="M50 105 L-55 148 L70 140 Z" fill="#0e1622" stroke="#344862" stroke-width="3"/></g>
-<text x="45" y="320" fill="#f5c542" font-family="Arial" font-size="28">PARTY SHIP // NAME OPEN</text></svg><div class="caption">The party ship: name left open. Home, transport, liability, and reason to survive.</div><div class="card" style="margin-top:14px"><h2>Combat Flow</h2><ol><li>Declare action.</li><li>Roll skill, such as Blaster 6D.</li><li>Compare against difficulty or target's Dodge.</li><li>If hit, roll weapon damage.</li><li>Target rolls Strength + Armor.</li><li>Compare damage vs resistance to determine wounds.</li></ol></div></div></div></section>
-<section id="gear" class="page"><div class="grid2"><div class="card"><h2>Gear with Explanations</h2><div id="fixedGear"></div></div><div class="card"><h2>Add Custom Gear</h2><p class="muted">Saved locally in this browser on this device.</p><label>Name</label><input id="newItemName" placeholder="Example: Door wedges"><label>Description</label><textarea id="newItemDesc" placeholder="What is it for? Why does Gage carry it?"></textarea><button class="btn gold" id="addItem">Add item</button><h3>Custom Items</h3><div id="customGear"></div></div></div></section>
-<section id="bio" class="page"><div class="grid2"><div><svg class="art" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="520" fill="#161616"/><circle cx="660" cy="130" r="105" fill="#d9d9d9" opacity=".15"/><path d="M70 420 C210 300 320 445 460 330 S700 295 850 225" stroke="#ddd" opacity=".28" stroke-width="7" fill="none"/><rect x="110" y="330" width="680" height="85" fill="#222" stroke="#aaa" opacity=".8"/><circle cx="300" cy="265" r="58" fill="#444" stroke="#aaa"/><rect x="260" y="315" width="90" height="95" rx="18" fill="#333" stroke="#aaa"/><circle cx="515" cy="250" r="52" fill="#3a3a3a" stroke="#aaa"/><rect x="475" y="300" width="95" height="120" rx="18" fill="#2d2d2d" stroke="#aaa"/><text x="60" y="72" fill="#f5c542" font-family="Arial" font-size="28">MEMORY // NO WAR STORIES</text></svg><div class="caption">Memory, not nostalgia. Gage does not tell war stories.</div></div><div class="card"><h2>Biography</h2><div class="bio">The first thing I learned to protect was not a person.
-
-It was a shipment.
-
-A crate of grain on a convoy route so old that half the nav beacons had gone dark.
-
-Nobody remembers the grain. Nobody remembers the ship. Nobody remembers the crew that would have starved if it never arrived.
-
-That is the thing about security. When you do your job well, people remember the cargo. Not you.
-
-I was not born a soldier. Barabels like stories about hunters, warriors, teeth and claws. Those stories are useful for children. They make violence sound clean. I learned later that violence is never clean. It gets into the walls. Into your hands. Into the way you sleep.
-
-The company called us convoy security. Other people called us mercenaries. We called ourselves The Squad.
-
-We were paid to move through bad space. Pirate lanes. Corporate disputes. Systems where law ended at the landing pad and started again when the local boss felt like it. Our orders were simple: make sure the cargo arrived, make sure the crew got home.
-
-For a while, we did.
-
-There is a kind of family that forms when everyone knows the same airlock might not open twice. You learn how a person breathes when they are scared. You learn who jokes before a fight and who goes quiet. You learn whose caf mug is never to be touched. You learn who will come back for you.
-
-The Squad always came back.
-
-Then came the contract. It paid too well. That was the first warning.
-
-We were told the convoy was routine. We were told reinforcements were close. We were told the employer valued every life aboard those ships.
-
-People say many things when they want you to stand in front of a door.
-
-The pirates hit us before the second jump point. We held the line. We called for reinforcements.
-
-They never came.
-
-Later, I understood. The convoy had been written off before we ever launched. The cargo was insured. The ships were replaceable. The crews were unfortunate. The security teams were expendable.
-
-The Squad was not betrayed in anger. That would have been easier. We were betrayed by arithmetic.
-
-I survived. Most of them did not.
-
-I do not tell stories about that day. I do not say their names to strangers. I do not count the dead out loud.
-
-If someone asks, I say: It was a long time ago.
-
-After that, I stopped working for corporations.
-
-I drifted from freighter to freighter, port to port, contract to contract. I learned customs routines, pirate habits, cantina exits, false smiles, hidden weapons, bad captains, good mechanics, desperate passengers, and all the little sounds a ship makes before something goes wrong.
-
-I learned that the best security officer is not the fastest draw. The best security officer is the one who prevents weapons from being drawn at all.
-
-Now I travel with the party.
-
-They are not my employers. They are not cargo. They are not replaceable.
-
-They are my people.
-
-And no one gets left behind again.</div></div></div></section>
-<section id="quotes" class="page"><div class="grid"><div class="card"><h2>Quotes</h2><p class="quote">“I'd rather talk.”</p><p class="quote">“Violence is easy. Living with it isn't.”</p><p class="quote">“If weapons come out... let's make sure we're the ones who put them away.”</p><p class="quote">“They're my crew.”</p><p class="quote">“No one gets left behind.”</p></div><div class="card"><h2>Table Moments</h2><p><b>Captain:</b> “Can we trust him?”</p><p><b>Gage:</b> “No.”</p><p>“...but we can work with him.”</p><hr><p><b>Captain:</b> “Can we take them?”</p><p><b>Gage:</b> “Probably.”</p><p>“The better question is... do we have to?”</p></div></div></section>
-<section id="rules" class="page"><div class="grid2"><div class="card"><h2>Core Rules</h2><div class="ruleblock"><b>Skill roll:</b> Roll the listed number of D. Blaster 6D means six six-sided dice.</div><div class="ruleblock"><b>To hit:</b> Roll attack skill against difficulty or target's Dodge.</div><div class="ruleblock"><b>Damage:</b> If you hit, roll weapon damage. Target rolls Strength + Armor.</div><div class="ruleblock"><b>Multiple actions:</b> Two actions in a round usually gives -1D to both.</div><div class="ruleblock"><b>Character Points:</b> XP and emergency help.</div><div class="ruleblock"><b>Force Point:</b> Big cinematic moment. Do not waste it.</div></div><div class="card"><h2>When Gage Uses Trained Skills</h2><div class="ruleblock"><b>Blaster:</b> When talk fails. Accuracy, not damage.</div><div class="ruleblock"><b>Dodge:</b> To survive blaster fire, explosions, and bad decisions.</div><div class="ruleblock"><b>Melee Combat:</b> When the fight gets too close.</div><div class="ruleblock"><b>Melee Parry:</b> Blocking blades and clubs.</div><div class="ruleblock"><b>Search:</b> Hidden weapons, ambushes, traps, exits, nervous hands, smugglers' compartments.</div><div class="ruleblock"><b>Command:</b> “Behind me.” “Hold fire.” “Medic, move.”</div><div class="ruleblock"><b>Starship Gunnery:</b> Turrets and ship weapons.</div><div class="ruleblock"><b>Security:</b> Locks, alarms, blast doors, cameras, weapon lockers, keeping people out.</div><div class="ruleblock"><b>First Aid:</b> Stabilize. Keep them alive until the medic takes over.</div></div></div></section>
-<section id="log" class="page"><div class="grid2"><div><svg class="art small" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="s1" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0b5368"/><stop offset="1" stop-color="#07101d"/></linearGradient></defs><rect width="900" height="360" fill="url(#s1)"/><path d="M0 280 C160 210 260 320 420 230 S680 200 900 150 V360 H0Z" fill="#111822"/><g stroke="#f5c542" opacity=".55"><path d="M80 260 H260"/><path d="M315 238 H500"/><path d="M560 210 H780"/></g><g fill="#75c7ff" opacity=".65"><circle cx="180" cy="258" r="8"/><circle cx="410" cy="236" r="8"/><circle cx="675" cy="208" r="8"/></g><path d="M80 120 L220 80 L310 120 L230 145 Z" fill="#22324a" stroke="#75c7ff"/><path d="M520 110 L720 70 L810 120 L640 150 Z" fill="#22324a" stroke="#75c7ff"/><text x="45" y="55" fill="#f5c542" font-family="Arial" font-size="28">STARPORT // EVERYONE SMILES FIRST</text></svg><div class="caption">Ports, rumors, contacts, debts, and the kind of trouble that follows a party.</div></div><div class="card"><h2>Free Journal</h2><p class="muted">Session notes, contacts, promises, debts, suspicions, or things Gage never says out loud.</p><textarea id="freeJournal" class="journalbox" placeholder="Session 1..."></textarea><button class="btn gold" id="saveJournal">Save Journal</button></div></div></section>
-</main><div id="modal" class="modal"><div class="modalbox"><button class="close" id="closeModal">X</button><h2 id="skillName">Skill</h2><p id="skillDesc"></p><button class="btn gold" id="rollBtn">Roll</button><div id="diceout" class="diceout"></div></div></div><div class="footer">GAGE CHARACTER SHEET • local offline HTML</div>
-<script>
-const skillGroups=[["Dexterity 4D",[["Blaster",6,"Firing blaster pistols, heavy blasters, carbines, and rifles."],["Brawling Parry",4,"Blocking punches, kicks, and unarmed attacks."],["Dodge",6,"Avoiding blaster fire, grenades, and ranged attacks."],["Grenade",4,"Throwing smoke, stun, flash, or fragmentation grenades."],["Melee Combat",5,"Attacking with a vibroblade, knife, staff, or other melee weapon."],["Melee Parry",5,"Blocking melee weapons."],["Vehicle Blasters",4,"Firing weapons mounted on ground vehicles."]]],["Perception 3D",[["Command",4,"Giving clear orders under pressure. Making people listen."],["Con",3,"Lying, bluffing, playing innocent."],["Gambling",3,"Sabacc, risk, odds, and reading the table."],["Hide",3,"Hiding objects, weapons, or contraband."],["Search",4,"Spotting ambushes, weapons, traps, hidden doors, exits, and threats."],["Sneak",3,"Moving quietly and avoiding detection."]]],["Knowledge 2D",[["Alien Species",2,"Knowledge of species, behavior, and special abilities."],["Languages",2,"Understanding and speaking languages."],["Planetary Systems",2,"Planets, trade routes, and local hazards."],["Streetwise",2,"Underworld contacts, smuggling routes, and local risks."],["Survival",2,"Surviving deserts, snow, jungles, and wilderness."]]],["Strength 4D",[["Brawling",4,"Unarmed fighting: punches, kicks, holds, and grapples."],["Climbing/Jumping",4,"Climbing, jumping, and crossing obstacles."],["Lifting",4,"Lifting, carrying, forcing things open."],["Stamina",4,"Endurance, cold, heat, fatigue, poison."],["Swimming",4,"Swimming and water environments."]]],["Mechanical 2D+2",[["Beast Riding",2,"Riding animals. Base is 2D+2; roller uses 2D for simplicity."],["Ground Vehicle Operation",2,"Driving ground vehicles. Base is 2D+2; roller uses 2D for simplicity."],["Repulsorlift Operation",2,"Driving landspeeders and speeder bikes. Base is 2D+2; roller uses 2D for simplicity."],["Starship Gunnery",4,"Firing ship cannons, turrets, and weapon systems."],["Walker Operation",2,"Operating walkers. Base is 2D+2; roller uses 2D for simplicity."]]],["Technical 3D",[["Computer Programming/Repair",3,"Hacking, programming, and repairing computers."],["Demolitions",3,"Placing, understanding, or disarming explosives."],["First Aid",4,"Stabilizing injured allies until the medic takes over."],["Security",4,"Locks, alarms, cameras, doors, weapon lockers, and security systems."]]]];
-const fixedGear=[["DL-6H Heavy Blaster Pistol","Gage's service weapon. Long range for a heavy blaster pistol. He draws it late, but maintains it constantly.","When words no longer work."],["SoroSuub QuickSnap 36T Blaster Carbine","Compact carbine for corridors, boarding actions, and shipboard fighting.","When the ramp goes down or someone boards the ship."],["Military Vibroblade","Carried as both a tool and a last resort. Practical, not flashy.","When someone gets too close or technology fails."],["Comlink","Basic party communication.","Gage always wants to know where the Captain and the medic are."],["Motion Tracker","Detects movement in corridors, cargo holds, ruins, or derelicts.","Gage's 'something is wrong' tool."],["Macrobinoculars","Long-distance observation, watching meeting sites, and checking landing zones.","Prepared is better than brave."],["Smoke Grenades","Creates cover for retreat, extraction, or protecting the Captain.","Non-lethal. Very Gage."],["Medpac","First aid until the real medic takes over.","Everyone comes home."],["Binder Cuffs","For ending problems without killing anyone.","Gage prefers prisoners to bodies."],["Breath Mask","Toxic atmosphere, smoke, gas, damaged ships.","A veteran does not forget basic survival gear."],["Power Packs","Extra ammunition for blasters.","No serious security chief runs dry."],["Protective Combat Helmet","Practical protection, not intimidation.","Function over style."],["Backpack","Carries what cannot be lost.","Gage's go-bag."],["Personal token from The Squad","A small reminder from those who did not come home.","No mechanical effect. Strong roleplay effect."]];
-function renderSkills(){const grid=document.getElementById('skillsGrid');grid.innerHTML=skillGroups.map(g=>`<div><h3>${g[0]}</h3>`+g[1].map(s=>`<div class="skill" data-name="${s[0]}" data-dice="${s[1]}" data-desc="${s[2]}"><span>${s[0]}</span><span class="die">${s[1]}D</span></div>`).join('')+`</div>`).join('');}
-function renderFixedGear(){document.getElementById('fixedGear').innerHTML=fixedGear.map(x=>`<div class="equip"><b>${x[0]}</b><br><span class="why">${x[1]}</span><br><span class="use"><b>Use:</b> ${x[2]}</span></div>`).join('');}
-function getCustomGear(){return JSON.parse(localStorage.getItem('gageCustomGearV6')||'[]');}
-function setCustomGear(items){localStorage.setItem('gageCustomGearV6',JSON.stringify(items));}
-function renderCustomGear(){const items=getCustomGear();const box=document.getElementById('customGear');if(items.length===0){box.innerHTML='<p class="muted">No custom gear yet.</p>';return}box.innerHTML=items.map((it,i)=>`<div class="customItem"><span><b>${it.name}</b><br><span class="muted">${it.desc}</span></span><button class="btn red" data-del="${i}">Remove</button></div>`).join('');}
-function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-function openSkill(name,dice,desc){document.getElementById('skillName').textContent=name+' '+dice+'D';document.getElementById('skillDesc').textContent=desc;document.getElementById('diceout').innerHTML='';document.getElementById('rollBtn').onclick=()=>rollTo('diceout',name,dice);document.getElementById('modal').style.display='flex';}
-function rollTo(target,name,dice){let rolls=[],total=0;for(let i=0;i<dice;i++){const r=Math.floor(Math.random()*6)+1;rolls.push(r);total+=r;}document.getElementById(target).innerHTML='<b>'+name+'</b><br>Rolls: '+rolls.join(', ')+'<br><b>Total: '+total+'</b>';}
-function save(){const data={cp:cp.value,fp:fp.value,dsp:dsp.value,credits:credits.value,freeJournal:freeJournal.value};localStorage.setItem('gageSheetV6',JSON.stringify(data));alert('Saved in this browser.');}
-function load(){const data=JSON.parse(localStorage.getItem('gageSheetV6')||'{}');if(data.cp!==undefined)cp.value=data.cp;if(data.fp!==undefined)fp.value=data.fp;if(data.dsp!==undefined)dsp.value=data.dsp;if(data.credits!==undefined)credits.value=data.credits;if(data.freeJournal!==undefined)freeJournal.value=data.freeJournal;}
-document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>showPage(btn.dataset.page,btn)));
-document.getElementById('closeModal').addEventListener('click',()=>document.getElementById('modal').style.display='none');
-document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')document.getElementById('modal').style.display='none';});
-document.getElementById('saveTop').addEventListener('click',save);document.getElementById('saveJournal').addEventListener('click',save);
-document.getElementById('addItem').addEventListener('click',()=>{const name=newItemName.value.trim();const desc=newItemDesc.value.trim();if(!name){alert('Write a name first.');return}const items=getCustomGear();items.push({name,desc});setCustomGear(items);newItemName.value='';newItemDesc.value='';renderCustomGear();});
-document.addEventListener('click',e=>{const skill=e.target.closest('.skill');if(skill)openSkill(skill.dataset.name,Number(skill.dataset.dice),skill.dataset.desc);const del=e.target.dataset.del;if(del!==undefined){const items=getCustomGear();items.splice(Number(del),1);setCustomGear(items);renderCustomGear();}const cr=e.target.closest('.combat-roll');if(cr)rollTo('combatOut',cr.dataset.name,Number(cr.dataset.dice));});
-renderSkills();renderFixedGear();renderCustomGear();load();
-</script></body></html>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAGE // Security Datapad</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="boot" class="boot">
+    <div class="boot-box">
+      <div class="scanline"></div>
+      <p class="boot-line">INITIALIZING SECURITY DATAPAD...</p>
+      <p class="boot-line delay-1">ACCESSING CREW RECORDS...</p>
+      <p class="boot-line delay-2">AUTHENTICATING...</p>
+      <p class="boot-line delay-3 granted">ACCESS GRANTED</p>
+    </div>
+  </div>
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-kicker">SECURITY DATAPAD</div><h1>GAGE</h1><div class="status-dot"><span></span> ONLINE</div></div>
+      <nav id="nav" class="nav">
+        <button data-view="overview" class="active">Overview</button><button data-view="combat">Combat</button><button data-view="skills">Skills</button><button data-view="gear">Equipment</button><button data-view="bio">Biography</button><button data-view="quotes">Quotes</button><button data-view="rules">Rules</button><button data-view="journal">Journal</button>
+      </nav>
+      <div class="sidebar-footer"><div>PARTY ROLE</div><strong>Security Chief / Gunner</strong></div>
+    </aside>
+    <section class="content">
+      <header class="topbar"><div><div class="eyebrow">Outer Rim Crew File</div><h2 id="view-title">Overview</h2></div><button id="sound-toggle" class="mini-btn">Audio: Off</button></header>
+      <section id="view" class="view"></section>
+    </section>
+  </main>
+  <div id="modal" class="modal hidden"><div class="modal-card"><button id="modal-close" class="modal-close">×</button><h3 id="modal-title"></h3><div id="modal-body"></div></div></div>
+  <script src="js/data.js"></script><script src="js/dice.js"></script><script src="js/app.js"></script>
+</body>
+</html>
