@@ -1,15 +1,5 @@
-# Gage Datapad v0.3
+# Outer Rim Datapad — Gage Beta 1.0
 
-Star Wars D6 datapad for Gage.
+Copy all files into your local gage-datapad folder, commit in GitHub Desktop, then push origin.
 
-## Install
-Copy these files into your local `gage-datapad` folder, commit in GitHub Desktop, then push origin.
-
-## Version 0.3
-- Full Merc template skills included
-- Datapad UI improved
-- Combat rolls
-- Skill modals with examples
-- Gear cards
-- Principles, Party, Ship pages
-- Journal autosave
+Includes complete Merc template skills, combat center, equipment workbench, personal archive with long documents, field rules, crew, ship, and journal autosave.

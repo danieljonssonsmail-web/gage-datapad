@@ -1,11 +1,1 @@
-function rollDice(count, modText = "") {
-  const rolls = [];
-  for (let i = 0; i < count; i++) rolls.push(Math.floor(Math.random() * 6) + 1);
-  const modifier = modText === "+1" ? 1 : modText === "+2" ? 2 : 0;
-  return { rolls, modifier, total: rolls.reduce((a,b)=>a+b,0) + modifier };
-}
-function renderRoll(target, label, dice, modText = "") {
-  const result = rollDice(dice, modText);
-  const faces = result.rolls.map(r => `<span class="face">${r}</span>`).join("");
-  target.innerHTML = `<strong>${label}</strong><div class="dice">${faces}${result.modifier ? `<span class="face">+${result.modifier}</span>` : ""}</div><div>Total: <span class="die">${result.total}</span></div>`;
-}
+function rollDice(count,modText=""){const rolls=[];for(let i=0;i<count;i++)rolls.push(Math.floor(Math.random()*6)+1);const mod=modText==="+1"?1:modText==="+2"?2:0;return{rolls,mod,total:rolls.reduce((a,b)=>a+b,0)+mod}}function renderRoll(target,label,dice,modText=""){const r=rollDice(dice,modText);target.innerHTML=`<strong>${label}</strong><div class="dice">${r.rolls.map(x=>`<span class="face">${x}</span>`).join("")}${r.mod?`<span class="face">+${r.mod}</span>`:""}</div><div>Total: <span class="die">${r.total}</span></div>`}
